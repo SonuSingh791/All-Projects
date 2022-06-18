@@ -1,0 +1,276 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    /* --display:none; */
+    --position: absolute;
+    --beforeLeft:100%;
+    --afterLeft:-100%;
+    --opacity: 0;
+    --ticketPosition: absolute;
+}
+body{
+
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; */
+    background: linear-gradient(#effeff, #a8ecec);
+    
+    min-height: 100vh;
+  /* background-color: #161623; */
+}
+
+body::before {
+    content: "";
+    position: var(--position);
+    top: 0;
+    left: var(--beforeLeft);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#f00, #f0f);
+    clip-path: circle(30% at right 70%);
+    /* display: var(--display); */
+    transition: 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  body::after{
+    content: "";
+    position: var(--position);
+    top: 50%;
+    left: var(--afterLeft);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#2196f3, #e91e63);
+    clip-path: circle(30% at left 50%);
+    z-index: -1;
+    transition: 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.toolbox-container{
+    height: 6rem;
+    background-color: cadetblue;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.toolbox-priority-container{
+    height: 3rem;
+    width: 12rem;
+    background-color: rgb(62, 107, 109);
+    margin-left: 4rem;
+    /* box-shadow: 0.1px 0.1px 10px rgba(0, 0, 0, 0.5); */
+    /* backdrop-filter: blur(5px); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 4px;
+}
+.action-button-container{
+    height: 3rem;
+    width: 6rem;
+    background-color: rgb(62, 107, 109);
+    margin-left: 2rem;
+    border-radius: 4px;
+    display: flex;
+    
+}
+.add-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(219, 227, 236);
+    transition: 0.25s;
+}
+.add-button:hover{
+    background-color: rgb(48, 90, 92);
+    cursor: pointer;
+    border-radius: 4px;
+}
+.remove-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(219, 227, 236);
+    transition: 0.25s;
+}
+.remove-button:hover{
+    background-color: rgb(48, 90, 92);
+    cursor: pointer;
+    border-radius: 4px;
+}
+.color{
+    width: 2rem;
+    height: 1.5rem;
+    background-color: black;
+    border-radius: 4px;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+    transition: 0.25s;
+}
+.color:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+.lightpink{
+    background-color: lightpink;
+}
+.lightgreen{
+    background-color: lightgreen;
+}
+.lightblue{
+    background-color: lightblue;
+}
+.black{
+    background-color: black;
+}
+.modal{
+    position: fixed;
+    height: 40vh;
+    width: 45vw;
+    /* background-color: rgb(238, 238, 238); */
+    top: calc(100vh / 2 - 30vh / 2);
+    left: calc(100vw / 2 - 40vw / 2);
+    /* box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2), -2px -2px 5px 1px rgba(0,0,0,0.2); */
+    
+    display: none;
+    z-index: 1;
+    /* border-radius: 10px; */
+}
+.textarea-container{
+    width: 75%;   
+}
+#ticket_name{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    /* border-radius: 15px; rgba(205, 247, 248, 0.582); */
+    background: rgba(23, 35, 36, 0.582);
+    color: white;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    border: none;
+    outline: none;
+    padding: 1rem;
+    resize: none;
+    font-size: 1.5rem;
+}
+.priority-color-container{
+    width: 25%;
+    height: 100%;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    /* border-radius: 15px; */
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+}
+.priority-color{
+    width: 50%;
+    height: 2rem;
+    border-radius: 4px;
+    z-index: 11;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+}
+.active{
+    background-color: rgb(48, 90, 92);
+}
+.border{
+    border: 5px solid rgb(0, 88, 19);
+}
+.main-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    gap: 2rem;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+.ticket-container{
+    
+    position: relative;
+    height: 12rem;
+    width: 17rem;
+    /* background-color: rgb(245, 245, 245); */
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: var(--opacity);
+    transition: 0.25s;
+
+}
+.ticket-container:hover{
+    transform: scale(1.2);
+}
+.locks{
+    position: absolute;
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    top: calc(100% - 2.5rem);
+    left: calc(100% - 2.5rem);
+    justify-content: center;
+    align-items: center;
+    transition: 0.25s;
+    
+}
+.locks:hover{
+    background-color: rgb(233, 236, 236);
+    cursor: pointer;
+    border-radius: 15px;
+}
+.lock{
+    font-size: 2rem;
+}
+.ticket-color{
+    height: 1rem;
+}
+.ticket-id{
+    height: 2rem;
+    padding: 0.4rem;
+}
+.task-area{
+    height: calc(100% - 2rem - 1rem);
+    padding: 0.4rem;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+    .modal{
+        width: 80vw;
+        left: calc(100vw / 2 - 80vw / 2);
+    }
+    .toolbox-priority-container{
+        width: 12rem;
+        margin-left: 2rem;
+    }
+    .action-button-container{
+        width: 5rem;
+        margin-left: .5rem;
+    }
+}
+@media screen and (min-width: 426px) and (max-width: 768) {
+    .modal{
+        width: 75vw;
+        left: calc(100vw / 2 - 75vw / 2);
+    }
+}
